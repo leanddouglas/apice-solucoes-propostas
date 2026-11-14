@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b1626">
+  <meta name="description" content="Ápice Soluções — fachadas, revestimentos e retrofit. Visualize a edificação em 3D e gere propostas e orçamentos na hora.">
+  <title>Ápice Soluções — Fachadas em 3D e propostas na hora</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+  <a class="skip-link" href="#orcamento">Pular para o gerador de orçamento</a>
+
+  <header class="site-header" id="topo">
+    <div class="wrap header-inner">
+      <a class="brand" href="#inicio" aria-label="Ápice Soluções — início" data-brand></a>
+      <nav class="main-nav" aria-label="Navegação principal">
+        <a href="#recursos">Recursos</a>
+        <a href="#orcamento">Orçamento</a>
+        <a href="#propostas">Propostas salvas</a>
+      </nav>
+      <a class="btn btn-accent btn-sm" href="#orcamento">Montar proposta</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="inicio" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow reveal">Fachadas · Revestimentos · Retrofit</p>
+          <h1 id="hero-title" class="reveal">Da planta à fachada pronta, <span class="hl">com a proposta na hora.</span></h1>
+          <p class="lead reveal">Mostre ao cliente a edificação em 3D, com o acabamento e a cor escolhidos, calcule a área automaticamente e gere uma proposta profissional em PDF, tudo em poucos minutos.</p>
+          <div class="hero-actions reveal">
+            <a class="btn btn-accent" href="#orcamento">Montar orçamento</a>
+            <button class="btn btn-ghost" type="button" id="hero-replay">
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v5h5"/></svg>
+              Ver construção
+            </button>
+          </div>
+          <ul class="hero-stats reveal" aria-label="Destaques">
+            <li><strong>3D</strong><span>modelo ao vivo</span></li>
+            <li><strong>m²</strong><span>medição automática</span></li>
+            <li><strong>PDF</strong><span>proposta pronta</span></li>
+          </ul>
+        </div>
+        <div class="viewer hero-viewer" id="hero-viewer">
+          <div class="bp-bg" aria-hidden="true"></div>
+          <div class="viewer-hud" aria-live="polite">
+            <span class="stage-chip" data-stage>Preparando o modelo…</span>
+            <span class="finish-chip" data-finish hidden></span>
+          </div>
+          <div class="stage-progress" aria-hidden="true"><span data-progress></span></div>
+          <p class="viewer-hint">Arraste para girar · Toque no modelo para pular a animação</p>
+          <noscript><p class="noscript">Ative o JavaScript para ver o modelo 3D.</p></noscript>
+        </div>
+      </div>
+    </section>
+
+    <!-- RECURSOS -->
+    <section class="features" id="recursos" aria-labelledby="recursos-title">
+      <div class="wrap">
+        <h2 id="recursos-title" class="section-title reveal">Uma ferramenta de venda para cada visita técnica</h2>
+        <div class="feature-grid">
+          <article class="feature reveal"><span class="feature-ico" aria-hidden="true">01</span><h3>Modelo 3D paramétrico</h3><p>Largura, profundidade, pavimentos e pé-direito geram a edificação na hora, com materiais realistas, sombras e reflexos no vidro.</p></article>
+          <article class="feature reveal"><span class="feature-ico" aria-hidden="true">02</span><h3>Medição automática</h3><p>Escolha as fachadas da intervenção e o percentual de vãos. A área medida alimenta os itens do orçamento.</p></article>
+          <article class="feature reveal"><span class="feature-ico" aria-hidden="true">03</span><h3>Proposta profissional</h3><p>Número da proposta, imagem do modelo, itens, condições e assinaturas, pronta para imprimir ou salvar em PDF.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- GERADOR DE ORÇAMENTO -->
+    <section class="builder" id="orcamento" aria-labelledby="orcamento-title">
+      <div class="wrap">
+        <div class="builder-head">
+          <div>
+            <p class="eyebrow dark">Gerador de proposta</p>
+            <h2 id="orcamento-title" class="section-title">Orçamento <span class="num" data-numero>—</span></h2>
+          </div>
+          <div class="head-actions">
+            <button type="button" class="btn btn-line btn-sm" id="btn-nova">Nova proposta</button>
+            <button type="button" class="btn btn-line btn-sm" id="btn-salvar">Salvar</button>
+            <button type="button" class="btn btn-accent btn-sm" id="btn-preview">Visualizar proposta</button>
+          </div>
+        </div>
+        <p class="notice" role="note"><strong>Valores de exemplo:</strong> os preços que vêm preenchidos são apenas modelos para teste. Ajuste-os em cada item ou de uma vez em <code>js/config.js</code>.</p>
+
+        <div class="builder-grid">
+          <div class="builder-viewer-col">
+            <div class="viewer builder-viewer" id="builder-viewer">
+              <div class="bp-bg" aria-hidden="true"></div>
+              <div class="viewer-hud" aria-live="polite">
+                <span class="stage-chip" data-stage>Modelo realista</span>
+              </div>
+              <div class="stage-progress" aria-hidden="true"><span data-progress></span></div>
+              <div class="viewer-tools" role="toolbar" aria-label="Controles do modelo 3D">
+                <button type="button" class="tool" id="tool-replay" title="Ver construção" aria-label="Ver construção"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v5h5"/></svg></button>
+                <button type="button" class="tool" id="tool-zoom-in" title="Aproximar" aria-label="Aproximar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+                <button type="button" class="tool" id="tool-zoom-out" title="Afastar" aria-label="Afastar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg></button>
+                <button type="button" class="tool" id="tool-reset" title="Enquadrar" aria-label="Enquadrar o modelo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3H3v6M15 3h6v6M3 15v6h6M21 15v6h-6"/></svg></button>
+                <button type="button" class="tool" id="tool-rotate" title="Giro automático" aria-label="Giro automático" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7a9 9 0 1 0 1 8M20 2v6h-6"/></svg></button>
+              </div>
+              <div class="area-badge"><span>Área medida</span><strong data-area-liquida>0,00 m²</strong></div>
+            </div>
+            <div class="summary card" aria-labelledby="resumo-title">
+              <h3 id="resumo-title">Resumo</h3>
+              <dl class="summary-list">
+                <div><dt>Altura total</dt><dd data-altura>—</dd></div>
+                <div><dt>Área bruta das fachadas</dt><dd data-area-bruta>—</dd></div>
+                <div><dt>Área medida (sem vãos)</dt><dd data-area-liquida>—</dd></div>
+                <div><dt>Subtotal</dt><dd data-subtotal>—</dd></div>
+                <div><dt>Desconto</dt><dd data-desconto>—</dd></div>
+                <div><dt data-impostos-rotulo>Impostos</dt><dd data-impostos>—</dd></div>
+                <div class="total"><dt>Total</dt><dd data-total>—</dd></div>
+              </dl>
+            </div>
+          </div>
+
+          <form class="builder-form" id="form" novalidate autocomplete="off">
+            <fieldset class="card step">
+              <legend><span class="step-n">1</span> Cliente e obra</legend>
+              <div class="fields">
+                <label class="field span-2">Nome ou razão social<input name="cliente.nome" type="text" placeholder="Ex.: Condomínio Edifício Aurora"></label>
+                <label class="field">CPF / CNPJ<input name="cliente.documento" type="text" inputmode="numeric" placeholder="00.000.000/0000-00"></label>
+                <label class="field">Responsável / contato<input name="cliente.contato" type="text" placeholder="Nome do síndico ou gestor"></label>
+                <label class="field">Telefone<input name="cliente.telefone" type="tel" placeholder="(00) 00000-0000"></label>
+                <label class="field">E-mail<input name="cliente.email" type="email" placeholder="email@cliente.com.br"></label>
+                <label class="field span-2">Endereço da obra<input name="obra.endereco" type="text" placeholder="Rua, número, bairro"></label>
+                <label class="field">Cidade / UF<input name="obra.cidade" type="text" placeholder="Cidade/UF"></label>
+                <label class="field">Data de emissão<input name="dataEmissao" type="date"></label>
+              </div>
+            </fieldset>
+
+            <fieldset class="card step">
+              <legend><span class="step-n">2</span> Edificação</legend>
+              <div class="fields">
+                <label class="field">Largura da frente (m)<input name="edificio.largura" type="number" min="4" max="80" step="0.1" data-num></label>
+                <label class="field">Profundidade (m)<input name="edificio.profundidade" type="number" min="4" max="80" step="0.1" data-num></label>
+                <label class="field">Pavimentos (com térreo)<input name="edificio.pavimentos" type="number" min="1" max="40" step="1" data-num></label>
+                <label class="field">Pé-direito do pavimento (m)<input name="edificio.peDireito" type="number" min="2.4" max="6" step="0.05" data-num></label>
+                <label class="field">Pé-direito do térreo (m)<input name="edificio.peDireitoTerreo" type="number" min="2.4" max="10" step="0.05" data-num></label>
+                <label class="field">Platibanda (m)<input name="edificio.platibanda" type="number" min="0.3" max="4" step="0.05" data-num></label>
+                <label class="field">Desconto de vãos (%)<input name="edificio.descontoVaos" type="number" min="0" max="90" step="1" data-num><small>Parte da fachada ocupada por janelas e esquadrias.</small></label>
+                <div class="field toggle-field">
+                  <label class="switch"><input type="checkbox" name="edificio.sacadas"><span></span>Sacadas na frente</label>
+                  <label class="switch"><input type="checkbox" id="anim-mudancas" checked><span></span>Animar mudanças de dimensões</label>
+                </div>
+              </div>
+              <div class="faces" role="group" aria-labelledby="faces-label">
+                <p id="faces-label" class="faces-title">Fachadas incluídas na intervenção</p>
+                <div class="faces-grid">
+                  <label class="chip"><input type="checkbox" name="edificio.faces.frente"><span>Frente</span><em data-face-area="frente"></em></label>
+                  <label class="chip"><input type="checkbox" name="edificio.faces.direita"><span>Lateral direita</span><em data-face-area="direita"></em></label>
+                  <label class="chip"><input type="checkbox" name="edificio.faces.fundos"><span>Fundos</span><em data-face-area="fundos"></em></label>
+                  <label class="chip"><input type="checkbox" name="edificio.faces.esquerda"><span>Lateral esquerda</span><em data-face-area="esquerda"></em></label>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="card step">
+              <legend><span class="step-n">3</span> Serviço e acabamento</legend>
+              <div class="fields">
+                <label class="field span-2">Tipo de serviço<select name="servico" id="sel-servico"></select></label>
+              </div>
+              <p class="faces-title" id="acab-label">Acabamento da fachada</p>
+              <div class="finish-grid" role="radiogroup" aria-labelledby="acab-label" id="finish-grid"></div>
+              <div class="fields">
+                <label class="field">Cor do acabamento<span class="color-row"><input name="cor" type="color" aria-label="Cor do acabamento"><span class="swatches" id="swatches"></span></span></label>
+                <label class="field">Referência da cor (opcional)<input name="corReferencia" type="text" placeholder="Ex.: Azul petróleo — código do fabricante"></label>
+              </div>
+            </fieldset>
+
+            <fieldset class="card step">
+              <legend><span class="step-n">4</span> Itens e valores</legend>
+              <div class="table-wrap">
+                <table class="items" aria-describedby="items-help">
+                  <thead><tr><th scope="col">Descrição</th><th scope="col">Un.</th><th scope="col">Qtd.</th><th scope="col">Valor unit. (R$)</th><th scope="col" class="r">Total</th><th scope="col"><span class="sr-only">Ações</span></th></tr></thead>
+                  <tbody id="items-body"></tbody>
+                </table>
+              </div>
+              <p id="items-help" class="help">Itens marcados como <span class="tag">auto</span> usam a área medida como quantidade. Os preços preenchidos são <strong>valores de exemplo</strong>.</p>
+              <div class="add-row">
+                <label class="field grow">Adicionar item do catálogo<select id="sel-extra"><option value="">Escolha um item…</option></select></label>
+                <button type="button" class="btn btn-line btn-sm" id="btn-add-extra">Adicionar</button>
+                <button type="button" class="btn btn-line btn-sm" id="btn-add-blank">Item em branco</button>
+              </div>
+            </fieldset>
+
+            <fieldset class="card step">
+              <legend><span class="step-n">5</span> Condições</legend>
+              <div class="fields">
+                <label class="field">Tipo de desconto<select name="desconto.tipo"><option value="percentual">Percentual (%)</option><option value="valor">Valor (R$)</option></select></label>
+                <label class="field">Desconto<input name="desconto.valor" type="text" inputmode="decimal" data-money></label>
+                <label class="field">Nome dos impostos<input name="impostos.rotulo" type="text"></label>
+                <label class="field">Impostos (%)<input name="impostos.percentual" type="text" inputmode="decimal" data-money></label>
+                <label class="field">Validade da proposta (dias)<input name="validadeDias" type="number" min="1" max="365" step="1" data-num><small data-validade-ate></small></label>
+                <label class="field">Prazo de execução (dias)<input name="prazoExecucaoDias" type="number" min="1" max="1000" step="1" data-num></label>
+                <label class="field span-2">Forma de pagamento<input name="formaPagamento" type="text" list="lista-pagamentos"><datalist id="lista-pagamentos"></datalist></label>
+                <label class="field span-2">Observações<textarea name="observacoes" rows="3"></textarea></label>
+              </div>
+            </fieldset>
+
+            <div class="form-actions">
+              <button type="button" class="btn btn-accent" id="btn-preview-2">Visualizar e imprimir proposta</button>
+              <button type="button" class="btn btn-line" id="btn-salvar-2">Salvar proposta</button>
+              <button type="button" class="btn btn-line" id="btn-export">Exportar JSON</button>
+              <label class="btn btn-line file-btn">Importar JSON<input type="file" id="file-import" accept="application/json,.json"></label>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROPOSTAS SALVAS -->
+    <section class="saved" id="propostas" aria-labelledby="propostas-title">
+      <div class="wrap">
+        <div class="builder-head">
+          <h2 id="propostas-title" class="section-title">Propostas salvas</h2>
+          <div class="head-actions"><button type="button" class="btn btn-line btn-sm" id="btn-export-all">Exportar todas (backup)</button></div>
+        </div>
+        <p class="help">As propostas ficam salvas neste navegador. Use “Exportar todas” para guardar um backup ou levar para outro computador.</p>
+        <div class="table-wrap card">
+          <table class="saved-table">
+            <thead><tr><th scope="col">Nº</th><th scope="col">Cliente</th><th scope="col">Emissão</th><th scope="col" class="r">Total</th><th scope="col"><span class="sr-only">Ações</span></th></tr></thead>
+            <tbody id="saved-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span data-brand-footer></span>
+      <span data-company-line></span>
+    </div>
+  </footer>
+
+  <!-- PRÉ-VISUALIZAÇÃO / IMPRESSÃO -->
+  <dialog id="preview" aria-labelledby="preview-title">
+    <div class="preview-toolbar">
+      <h2 id="preview-title">Pré-visualização da proposta</h2>
+      <div class="head-actions">
+        <button type="button" class="btn btn-accent btn-sm" id="btn-print">Imprimir / Salvar PDF</button>
+        <button type="button" class="btn btn-line btn-sm" id="btn-close-preview">Fechar</button>
+      </div>
+    </div>
+    <div class="preview-scroll"><article id="doc" class="doc"></article></div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="vendor/three.bundle.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/building.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
